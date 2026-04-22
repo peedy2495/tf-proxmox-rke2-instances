@@ -156,5 +156,5 @@ variable "start_vms" {
 variable "vm_tags" {
   description = "Tags applied to all VMs in Proxmox."
   type        = list(string)
-  default     = ["terraform", "rke2"]
+  default     = ["stack-rke2", "tool-ansible", "tool-terraform"]
 }

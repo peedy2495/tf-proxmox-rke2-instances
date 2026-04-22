@@ -6,6 +6,7 @@ locals {
     for index in range(var.control_plane_count) : format("cp-%02d", index + 1) => {
       name          = format("rke2-cp-%02d", index + 1)
       role          = "control-plane"
+      role_tag      = "role-control-plane"
       vm_id         = var.control_plane_vm_id_start + index
       ip_address    = cidrhost(var.network_cidr, var.control_plane_ip_start + index)
       cores         = var.control_plane_cores
@@ -19,6 +20,7 @@ locals {
     for index in range(var.worker_node_count) : format("worker-%02d", index + 1) => {
       name          = format("rke2-worker-%02d", index + 1)
       role          = "worker-node"
+      role_tag      = "role-worker"
       vm_id         = var.worker_node_vm_id_start + index
       ip_address    = cidrhost(var.network_cidr, var.worker_node_ip_start + index)
       cores         = var.worker_node_cores
