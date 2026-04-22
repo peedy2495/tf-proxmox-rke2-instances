@@ -15,18 +15,18 @@ locals {
     }
   }
 
-  data_node_vms = {
-    for index in range(var.data_node_count) : format("data-%02d", index + 1) => {
-      name          = format("rke2-data-%02d", index + 1)
-      role          = "data-node"
-      vm_id         = var.data_node_vm_id_start + index
-      ip_address    = cidrhost(var.network_cidr, var.data_node_ip_start + index)
-      cores         = var.data_node_cores
-      memory_mb     = var.data_node_memory_mb
-      disk_gb       = var.data_node_disk_gb
+  worker_node_vms = {
+    for index in range(var.worker_node_count) : format("worker-%02d", index + 1) => {
+      name          = format("rke2-worker-%02d", index + 1)
+      role          = "worker-node"
+      vm_id         = var.worker_node_vm_id_start + index
+      ip_address    = cidrhost(var.network_cidr, var.worker_node_ip_start + index)
+      cores         = var.worker_node_cores
+      memory_mb     = var.worker_node_memory_mb
+      disk_gb       = var.worker_node_disk_gb
       startup_order = 20 + index
     }
   }
 
-  vms = merge(local.control_plane_vms, local.data_node_vms)
+  vms = merge(local.control_plane_vms, local.worker_node_vms)
 }

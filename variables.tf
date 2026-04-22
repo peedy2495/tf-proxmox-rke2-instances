@@ -81,8 +81,8 @@ variable "control_plane_count" {
   default     = 3
 }
 
-variable "data_node_count" {
-  description = "Number of RKE2 data-node VMs."
+variable "worker_node_count" {
+  description = "Number of RKE2 worker-node VMs."
   type        = number
   default     = 4
 }
@@ -93,8 +93,8 @@ variable "control_plane_vm_id_start" {
   default     = 201
 }
 
-variable "data_node_vm_id_start" {
-  description = "First VM ID for data-node VMs."
+variable "worker_node_vm_id_start" {
+  description = "First VM ID for worker-node VMs."
   type        = number
   default     = 211
 }
@@ -105,8 +105,8 @@ variable "control_plane_ip_start" {
   default     = 201
 }
 
-variable "data_node_ip_start" {
-  description = "First host number inside network_cidr for data-node static IPs."
+variable "worker_node_ip_start" {
+  description = "First host number inside network_cidr for worker-node static IPs."
   type        = number
   default     = 211
 }
@@ -129,20 +129,20 @@ variable "control_plane_disk_gb" {
   default     = 40
 }
 
-variable "data_node_cores" {
-  description = "vCPU cores per data-node VM."
+variable "worker_node_cores" {
+  description = "vCPU cores per worker-node VM."
   type        = number
   default     = 4
 }
 
-variable "data_node_memory_mb" {
-  description = "Memory in MB per data-node VM."
+variable "worker_node_memory_mb" {
+  description = "Memory in MB per worker-node VM."
   type        = number
   default     = 8192
 }
 
-variable "data_node_disk_gb" {
-  description = "Boot disk size in GB per data-node VM."
+variable "worker_node_disk_gb" {
+  description = "Boot disk size in GB per worker-node VM."
   type        = number
   default     = 80
 }

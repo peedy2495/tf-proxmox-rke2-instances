@@ -21,10 +21,10 @@ output "control_plane_hosts" {
   }
 }
 
-output "data_node_hosts" {
-  description = "Data-node hosts for Ansible."
+output "worker_node_hosts" {
+  description = "Worker-node hosts for Ansible."
   value = {
-    for key, spec in local.data_node_vms : spec.name => {
+    for key, spec in local.worker_node_vms : spec.name => {
       ansible_host = spec.ip_address
       vm_id        = spec.vm_id
     }

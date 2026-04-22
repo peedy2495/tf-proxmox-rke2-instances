@@ -5,7 +5,7 @@ Terraform for cloning Ubuntu generic Proxmox VMs that will later be configured a
 This creates:
 
 - 3 control-plane VMs: `rke2-cp-01` through `rke2-cp-03`
-- 4 data-node VMs: `rke2-data-01` through `rke2-data-04`
+- 4 worker-node VMs: `rke2-worker-01` through `rke2-worker-04`
 
 The Proxmox API endpoint defaults to `https://192.168.123.194:8006/`.
 
@@ -29,9 +29,9 @@ The Ubuntu template already owns user enrollment and credentials, so Terraform d
 | Network | `192.168.123.0/24` |
 | Gateway | `192.168.123.1` |
 | Control-plane IPs | `192.168.123.201` - `192.168.123.203` |
-| Data-node IPs | `192.168.123.211` - `192.168.123.214` |
+| Worker-node IPs | `192.168.123.211` - `192.168.123.214` |
 | Control-plane VM IDs | `201` - `203` |
-| Data-node VM IDs | `211` - `214` |
+| Worker-node VM IDs | `211` - `214` |
 | Datastore | `local-lvm` |
 | Bridge | `vmbr0` |
 
@@ -49,4 +49,4 @@ Use `terraform.tfvars.example` as a non-secret reference for the variables Semap
 
 ## Ansible Handoff
 
-The `vm_inventory`, `control_plane_hosts`, and `data_node_hosts` outputs are shaped for a later Ansible inventory step.
+The `vm_inventory`, `control_plane_hosts`, and `worker_node_hosts` outputs are shaped for a later Ansible inventory step.
