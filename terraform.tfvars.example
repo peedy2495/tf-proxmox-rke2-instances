@@ -1,0 +1,18 @@
+# Copy values from this file into Semaphore environment variables or a
+# Semaphore-managed tfvars file. Do not commit real secrets.
+
+proxmox_endpoint  = "https://192.168.123.194:8006/"
+proxmox_api_token = "terraform@pve!semaphore=REPLACE_ME"
+
+# The bpg/proxmox provider clones by source VM ID. Set this to the VM ID of
+# the Proxmox template named "ubuntu generic".
+template_vm_id = 9000
+
+proxmox_node_name       = "pve"
+clone_datastore_id      = "local-lvm"
+cloud_init_datastore_id = "local-lvm"
+network_bridge          = "vmbr0"
+
+network_cidr    = "192.168.123.0/24"
+network_gateway = "192.168.123.1"
+dns_servers     = ["192.168.123.1", "1.1.1.1"]
