@@ -3,7 +3,7 @@ resource "proxmox_virtual_environment_vm" "rke2" {
 
   name        = each.value.name
   description = "RKE2 ${replace(trimsuffix(each.value.role, "-node"), "-", " ")} node managed by Terraform"
-  tags        = concat([each.value.role_tag], var.vm_tags)
+  tags        = concat([each.value.role_tag, local.target_env_tag], var.vm_tags)
 
   node_name = var.proxmox_node_name
   vm_id     = each.value.vm_id

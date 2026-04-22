@@ -4,8 +4,8 @@ Terraform for cloning Ubuntu generic Proxmox VMs that will later be configured a
 
 This creates:
 
-- 3 control-plane VMs: `rke2-cp-01` through `rke2-cp-03`
-- 4 worker-node VMs: `rke2-worker-01` through `rke2-worker-04`
+- 3 control-plane VMs: `rke2-production-cp-01` through `rke2-production-cp-03`
+- 4 worker-node VMs: `rke2-production-worker-01` through `rke2-production-worker-04`
 
 The Proxmox API endpoint defaults to `https://192.168.123.194:8006/`.
 
@@ -16,6 +16,7 @@ Store secrets in Semaphore and inject them as Terraform variables:
 ```bash
 TF_VAR_proxmox_api_token='terraform@pve!semaphore=...'
 TF_VAR_template_vm_id='9000'
+TF_VAR_target_env='production'
 ```
 
 `template_vm_id` must be the VM ID of the vm template used for cloning; the bpg/proxmox provider clones by VM ID rather than by name.
@@ -28,6 +29,7 @@ The Ubuntu template already owns user enrollment and credentials, so Terraform d
 | --- | --- |
 | Network | `192.168.123.0/24` |
 | Gateway | `192.168.123.1` |
+| Target environment | `production` |
 | Control-plane IPs | `192.168.123.201` - `192.168.123.203` |
 | Worker-node IPs | `192.168.123.211` - `192.168.123.214` |
 | Control-plane VM IDs | `201` - `203` |

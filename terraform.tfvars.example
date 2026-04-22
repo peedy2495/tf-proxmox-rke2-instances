@@ -8,6 +8,8 @@ proxmox_api_token = "terraform@pve!semaphore=REPLACE_ME"
 # the Proxmox template named "ubuntu generic".
 template_vm_id = 9000
 
+target_env = "production"
+
 proxmox_node_name       = "pve"
 clone_datastore_id      = "local-lvm"
 cloud_init_datastore_id = "local-lvm"

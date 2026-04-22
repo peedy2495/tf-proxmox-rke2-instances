@@ -75,6 +75,17 @@ variable "dns_domain" {
   default     = null
 }
 
+variable "target_env" {
+  description = "Target environment used in VM names and tags. Use production, staging or development."
+  type        = string
+  default     = "production"
+
+  validation {
+    condition     = contains(["production", "staging", "development"], var.target_env)
+    error_message = "target_env must be either production, staging or development."
+  }
+}
+
 variable "control_plane_count" {
   description = "Number of RKE2 control-plane VMs."
   type        = number

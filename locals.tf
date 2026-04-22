@@ -1,10 +1,11 @@
 locals {
   network_prefix_length = split("/", var.network_cidr)[1]
   template_node_name    = coalesce(var.template_node_name, var.proxmox_node_name)
+  target_env_tag        = "target-env-${var.target_env}"
 
   control_plane_vms = {
     for index in range(var.control_plane_count) : format("cp-%02d", index + 1) => {
-      name          = format("rke2-cp-%02d", index + 1)
+      name          = format("rke2-%s-cp-%02d", var.target_env, index + 1)
       role          = "control-plane"
       role_tag      = "role-control-plane"
       vm_id         = var.control_plane_vm_id_start + index
@@ -18,7 +19,7 @@ locals {
 
   worker_node_vms = {
     for index in range(var.worker_node_count) : format("worker-%02d", index + 1) => {
-      name          = format("rke2-worker-%02d", index + 1)
+      name          = format("rke2-%s-worker-%02d", var.target_env, index + 1)
       role          = "worker-node"
       role_tag      = "role-worker"
       vm_id         = var.worker_node_vm_id_start + index
