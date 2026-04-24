@@ -5,7 +5,7 @@ locals {
 
   control_plane_vms = {
     for index, target_node in var.management_nodes : format("mgmt-%02d", index + 1) => {
-      name          = format("rke2-%s-mgmt-%02d", var.target_env, index + 1)
+      name          = format("rke2-%s-control-plane-%02d", var.target_env, index + 1)
       instance_name = format("mgmt-%02d", index + 1)
       node_name     = target_node
       role          = "control-plane"
@@ -21,7 +21,7 @@ locals {
 
   worker_node_vms = {
     for index, target_node in var.data_nodes : format("data-%02d", index + 1) => {
-      name          = format("rke2-%s-data-%02d", var.target_env, index + 1)
+      name          = format("rke2-%s-worker-%02d", var.target_env, index + 1)
       instance_name = format("data-%02d", index + 1)
       node_name     = target_node
       role          = "worker-node"

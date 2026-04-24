@@ -4,8 +4,8 @@ Terraform for cloning Ubuntu generic Proxmox VMs that will later be configured a
 
 This creates:
 
-- Control-plane VMs from the ordered `management_nodes` list, for example `rke2-production-mgmt-01` through `rke2-production-mgmt-03`
-- Worker-node VMs from the ordered `data_nodes` list, for example `rke2-production-data-01` through `rke2-production-data-08`
+- Control-plane VMs from the ordered `management_nodes` list, for example `rke2-production-control-plane-01` through `rke2-production-control-plane-03`
+- Worker-node VMs from the ordered `data_nodes` list, for example `rke2-production-worker-01` through `rke2-production-worker-08`
 
 The Proxmox API endpoint defaults to `https://192.168.123.194:8006/`.
 
