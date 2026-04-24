@@ -87,7 +87,7 @@ variable "target_env" {
 }
 
 variable "management_nodes" {
-  description = "Ordered list of management node names used for control-plane VMs."
+  description = "Ordered list of Proxmox target nodes used for control-plane VMs."
   type        = list(string)
   default = [
     "pve",
@@ -97,7 +97,7 @@ variable "management_nodes" {
 }
 
 variable "data_nodes" {
-  description = "Ordered list of data node names used for worker-node VMs."
+  description = "Ordered list of Proxmox target nodes used for worker-node VMs."
   type        = list(string)
   default = [
     "pve",

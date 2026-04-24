@@ -4,9 +4,10 @@ locals {
   target_env_tag        = "target-env-${var.target_env}"
 
   control_plane_vms = {
-    for index, node_name in var.management_nodes : node_name => {
-      name          = format("rke2-%s-%s", var.target_env, node_name)
-      node_name     = node_name
+    for index, target_node in var.management_nodes : format("mgmt-%02d", index + 1) => {
+      name          = format("rke2-%s-mgmt-%02d", var.target_env, index + 1)
+      instance_name = format("mgmt-%02d", index + 1)
+      node_name     = target_node
       role          = "control-plane"
       role_tag      = "role-control-plane"
       vm_id         = var.control_plane_vm_id_start + index
@@ -19,9 +20,10 @@ locals {
   }
 
   worker_node_vms = {
-    for index, node_name in var.data_nodes : node_name => {
-      name          = format("rke2-%s-%s", var.target_env, node_name)
-      node_name     = node_name
+    for index, target_node in var.data_nodes : format("data-%02d", index + 1) => {
+      name          = format("rke2-%s-data-%02d", var.target_env, index + 1)
+      instance_name = format("data-%02d", index + 1)
+      node_name     = target_node
       role          = "worker-node"
       role_tag      = "role-worker"
       vm_id         = var.worker_node_vm_id_start + index
