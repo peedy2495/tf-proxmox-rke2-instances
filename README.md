@@ -4,8 +4,8 @@ Terraform for cloning Ubuntu generic Proxmox VMs that will later be configured a
 
 This creates:
 
-- 3 control-plane VMs: `rke2-production-cp-01` through `rke2-production-cp-03`
-- 4 worker-node VMs: `rke2-production-worker-01` through `rke2-production-worker-04`
+- Control-plane VMs from the ordered `management_nodes` list, for example `rke2-production-mgmt-01` through `rke2-production-mgmt-03`
+- Worker-node VMs from the ordered `data_nodes` list, for example `rke2-production-data-01` through `rke2-production-data-08`
 
 The Proxmox API endpoint defaults to `https://192.168.123.194:8006/`.
 
@@ -30,14 +30,18 @@ The Ubuntu template already owns user enrollment and credentials, so Terraform d
 | Network | `192.168.123.0/24` |
 | Gateway | `192.168.123.1` |
 | Target environment | `production` |
+| Control-plane nodes | `mgmt-01` to `mgmt-03` |
+| Worker nodes | `data-01` to `data-08` |
 | Control-plane IPs | `192.168.123.201` - `192.168.123.203` |
-| Worker-node IPs | `192.168.123.211` - `192.168.123.214` |
+| Worker-node IPs | `192.168.123.211` - `192.168.123.218` |
 | Control-plane VM IDs | `201` - `203` |
-| Worker-node VM IDs | `211` - `214` |
+| Worker-node VM IDs | `211` - `218` |
 | Datastore | `local-lvm` |
 | Bridge | `vmbr0` |
 
 Override any of these with Semaphore `TF_VAR_*` values or a Semaphore-managed tfvars file.
+
+The topology is driven by the ordered `management_nodes` and `data_nodes` arrays. VM IDs and IPs are derived from their position in each list by applying the corresponding `*_vm_id_start` and `*_ip_start` values.
 
 ## Local Usage
 

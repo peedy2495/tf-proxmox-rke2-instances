@@ -18,3 +18,11 @@ network_bridge          = "vmbr0"
 network_cidr    = "192.168.123.0/24"
 network_gateway = "192.168.123.1"
 dns_servers     = ["192.168.123.1", "1.1.1.1"]
+
+management_nodes = ["mgmt-01", "mgmt-02", "mgmt-03"]
+data_nodes       = ["data-01", "data-02", "data-03", "data-04", "data-05", "data-06", "data-07", "data-08"]
+
+control_plane_vm_id_start = 201
+worker_node_vm_id_start   = 211
+control_plane_ip_start    = 201
+worker_node_ip_start      = 211

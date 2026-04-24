@@ -86,16 +86,25 @@ variable "target_env" {
   }
 }
 
-variable "control_plane_count" {
-  description = "Number of RKE2 control-plane VMs."
-  type        = number
-  default     = 3
+variable "management_nodes" {
+  description = "Ordered list of management node names used for control-plane VMs."
+  type        = list(string)
+  default = [
+    "pve",
+    "pve",
+    "pve",
+  ]
 }
 
-variable "worker_node_count" {
-  description = "Number of RKE2 worker-node VMs."
-  type        = number
-  default     = 4
+variable "data_nodes" {
+  description = "Ordered list of data node names used for worker-node VMs."
+  type        = list(string)
+  default = [
+    "pve",
+    "pve",
+    "pve",
+    "pve",
+  ]
 }
 
 variable "control_plane_vm_id_start" {

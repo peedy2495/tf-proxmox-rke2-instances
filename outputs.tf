@@ -3,6 +3,7 @@ output "vm_inventory" {
   value = {
     for key, vm in proxmox_virtual_environment_vm.rke2 : key => {
       name         = vm.name
+      node_name    = local.vms[key].node_name
       role         = local.vms[key].role
       vm_id        = vm.vm_id
       ip_address   = local.vms[key].ip_address
@@ -16,6 +17,7 @@ output "control_plane_hosts" {
   value = {
     for key, spec in local.control_plane_vms : spec.name => {
       ansible_host = spec.ip_address
+      node_name    = spec.node_name
       vm_id        = spec.vm_id
     }
   }
@@ -26,6 +28,7 @@ output "worker_node_hosts" {
   value = {
     for key, spec in local.worker_node_vms : spec.name => {
       ansible_host = spec.ip_address
+      node_name    = spec.node_name
       vm_id        = spec.vm_id
     }
   }
